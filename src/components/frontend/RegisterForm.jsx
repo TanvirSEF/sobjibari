@@ -111,15 +111,15 @@ export default function RegisterForm({ role = "CUSTOMER" }) {
         <div className="w-full bg-slate-500 h-[1px]"></div>
       </div>
 
-      <p className="text-sm font-light text-gray-500 dark:text-gray-400 py-4">
-        Already have an account?{" "}
+      <div className="flex items-center gap-4 text-[15px]  text-gray-500 dark:text-gray-400 py-4">
+        Already have an account?
         <Link
           href="/login"
-          className="font-medium text-purple-600 hover:underline dark:text-purple-500"
+          className="text-[15px] px-4 py-[6px] bg-green-700 font-medium text-white hover:underline dark:text-white rounded-sm"
         >
           Login
         </Link>
-      </p>
+      </div>
     </form>
   );
 }
