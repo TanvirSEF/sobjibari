@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import React from "react";
 import soya from "@/assets/images/soya.jpg";
@@ -6,7 +5,9 @@ import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
 import HomeCategoryCarousel from "@/components/frontend/HomeCategoryCarousel";
 import HomeVegeCarousel from "@/components/frontend/HomeVegeCarousel";
-export default function HomeCategory() {
+import getData from "@/lib/getData";
+export default async function HomeCategory() {
+  const homeCategory = await getData("categories");
   return (
     <div className="flex gap-2">
       {/* Deal */}
@@ -43,8 +44,8 @@ export default function HomeCategory() {
       </div>
       {/* Category */}
       <div className="w-[70%] h-[570px]">
-        <HomeCategoryCarousel />
-        <HomeVegeCarousel/>
+        <HomeCategoryCarousel homeCategory={homeCategory}/>
+        <HomeVegeCarousel />
       </div>
     </div>
   );

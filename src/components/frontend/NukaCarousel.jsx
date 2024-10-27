@@ -35,7 +35,7 @@ function SampleNextArrow(props) {
   );
 }
 
-export default function NukaCarousel() {
+export default function NukaCarousel({ banners }) {
   var settings = {
     dots: true,
     infinite: true,
@@ -88,18 +88,19 @@ export default function NukaCarousel() {
   };
   return (
     <Slider {...settings}>
-      <Link href="">
-        <Image className="lg:h-[500px] rounded shadow" src={banner1} alt="banner1" />
-      </Link>
-      <Link href="">
-        <Image className="lg:h-[500px] rounded shadow" src={banner2} alt="banner1" />
-      </Link>
-      <Link href="">
-        <Image className="lg:h-[500px] rounded shadow" src={banner3} alt="banner1" />
-      </Link>
-      <Link href="">
-        <Image className="lg:h-[500px] rounded shadow" src={banner4} alt="banner1" />
-      </Link>
+      {banners.map((banner, i) => {
+        return (
+          <Link href={banner.link} key={i}>
+            <Image
+              className="lg:h-[500px] rounded shadow"
+              src={banner.imageUrl}
+              width={1080}
+              height={1080}
+              alt={banner.title}
+            />
+          </Link>
+        );
+      })}
     </Slider>
   );
 }

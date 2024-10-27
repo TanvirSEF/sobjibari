@@ -32,31 +32,32 @@ function SampleNextArrow(props) {
   );
 }
 
-export default function HomeCategoryCarousel() {
+export default function HomeCategoryCarousel({ homeCategory }) {
   const settings = {
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
-  const slides = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        {slides.map((item, i) => {
+        {homeCategory.map((item, i) => {
           return (
             <div className="">
               <Link href="" key={i} className="relative">
                 <Image
-                  src={egg}
-                  alt="egg"
+                  src={item.imageUrl}
+                  width={1080}
+                  height={108}
+                  alt={item.title}
                   className="w-[200px] object-cover rounded-md h-[200px] "
                 />
 
-                <p className="px-5 py-1 text-white font-semibold bg-red-500 w-[100px] text-center rounded-xl absolute top-[164px] left-[54px]">
-                  Eggs
+                <p className="px-5 py-1  items-center flex justify-center  text-white font-semibold bg-red-500 text-center rounded-xl absolute top-[164px] left-[54px]">
+                  {item.title}
                 </p>
               </Link>
             </div>

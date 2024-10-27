@@ -48,7 +48,7 @@ export default function CategoryListCard() {
       <Slider {...settings}>
         {slides.map((item, i) => {
           return (
-            <Card className="max-w-[280px]">
+            <Card key={i} className="max-w-[280px]">
               <Image src={tomato} alt="tomato" />
               <p className="text-[13px] text-gray-500">Delivery 30-45 mins</p>
               <Link href="#">

@@ -6,7 +6,7 @@ export default function HomeProduct() {
   return (
     <div className='mt-6'>
       <div className="w-[100%] rounded-lg h-[335px]">
-        <div className="w-full px-2 flex justify-between items-center h-[50px] border-b rounded shadow-md">
+        <div className="w-full p-4 flex justify-between items-center h-[50px] border-b rounded shadow-md">
           <h3 className="font-bold text-[25px]">Fresh Vegetables Items</h3>
           <Link
             href=""

@@ -1,8 +1,6 @@
 import React from "react";
-import vegetable from "../../assets/images/potato.png";
-import Link from "next/link";
-import Image from "next/image";
 import NukaCarousel from "@/components/frontend/NukaCarousel";
+import SideBarCategories from "@/components/frontend/SideBarCategories";
 import {
   BadgeCheck,
   CreditCard,
@@ -10,39 +8,16 @@ import {
   HeadphonesIcon,
   PackageCheck,
 } from "lucide-react";
-export default function Hero() {
-  const categories = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
+import getData from "@/lib/getData";
+export default async function Hero() {
+  const banners = await getData("banners");
   return (
     <div className="grid grid-cols-12 lg:gap-8">
-      <div className="sm:col-span-3 sm:block h-[500px] bg-white border border-gray-300 rounded-lg dark:bg-slate-700 overflow-hidden hidden shadow dark:border-gray-700 text-slate-800">
-        <h2 className="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:border-gray-600 dark:text-slate-100 py-3 px-6 font-semibold text-[17px] border-b border-gray-300">
-          Shop By Category
-        </h2>
-        <div className="py-3 px-6  h-[500px] overflow-y-auto flex flex-col gap-3">
-          {categories.map((item, i) => {
-            return (
-              <Link
-                key={i}
-                href=""
-                className="flex items-center gap-3 hover:bg-slate-100 rounded-lg duration-300 transition-all dark:text-slate-300 dark:hover:bg-slate-600"
-              >
-                <Image
-                  width={473}
-                  height={477}
-                  className="w-12 h-12 rounded-full object-cover border border-green-300"
-                  src={vegetable}
-                  alt="vegetables"
-                />
-                <span className="font-semibold">Vegetables</span>
-              </Link>
-            );
-          })}
-        </div>
-      </div>
+      <SideBarCategories />
       {/* Sidebar */}
       {/* Banner */}
       <div className="sm:col-span-7 col-span-full">
-        <NukaCarousel />
+        <NukaCarousel banners={banners} />
       </div>
       <div className="col-span-2 hidden sm:block h-[500px] space-y-5">
         <div className="flex items-center gap-2 py-4 border border-green-400 rounded bg-green-100">
