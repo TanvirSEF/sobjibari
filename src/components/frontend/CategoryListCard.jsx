@@ -49,15 +49,17 @@ export default function CategoryListCard({ products }) {
         {products.map((item, i) => {
           return (
             <Card key={i} className="max-w-[280px] max-h-[450px]">
-              <Image
-                src={item.imageUrl}
-                height={400}
-                width={400}
-                alt={item.title}
-                className="h-[200px] object-cover"
-              />
+              <Link href={`/products/${item.slug}`}>
+                <Image
+                  src={item.imageUrl}
+                  height={400}
+                  width={400}
+                  alt={item.title}
+                  className="h-[200px] object-cover"
+                />
+              </Link>
               <p className="text-[13px] text-gray-500">Delivery 30-45 mins</p>
-              <Link href="#">
+              <Link href={`/products/${item.slug}`}>
                 <h5 className="text-[18px] font-bold tracking-tight text-gray-900 dark:text-white">
                   {item.title}
                 </h5>

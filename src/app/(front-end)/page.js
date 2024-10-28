@@ -10,6 +10,8 @@ export default async function Home() {
     <div className="min-h-screen">
       <Hero />
       <HomeCategory />
+
+
       {categories.map((item, i) => {
         return (
           <div className="" key={i}>
@@ -17,6 +19,8 @@ export default async function Home() {
           </div>
         );
       })}
+
+      
       <CommunityBlog />
     </div>
   );
