@@ -10,5 +10,6 @@ export default async function NewCommunity() {
       title: item.title,
     };
   });
+
   return <NewCommunityForm categories={categories} />;
 }

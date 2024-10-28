@@ -33,7 +33,7 @@ function SampleNextArrow(props) {
   );
 }
 
-export default function CategoryListCard() {
+export default function CategoryListCard({ products }) {
   const settings = {
     infinite: true,
     speed: 500,
@@ -46,22 +46,28 @@ export default function CategoryListCard() {
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        {slides.map((item, i) => {
+        {products.map((item, i) => {
           return (
-            <Card key={i} className="max-w-[280px]">
-              <Image src={tomato} alt="tomato" />
+            <Card key={i} className="max-w-[280px] max-h-[450px]">
+              <Image
+                src={item.imageUrl}
+                height={400}
+                width={400}
+                alt={item.title}
+                className="h-[200px] object-cover"
+              />
               <p className="text-[13px] text-gray-500">Delivery 30-45 mins</p>
               <Link href="#">
                 <h5 className="text-[18px] font-bold tracking-tight text-gray-900 dark:text-white">
-                  Red Tomato Round
+                  {item.title}
                 </h5>
               </Link>
               <div className="flex items-center gap-4">
                 <del className="text-[18px] font-medium text-gray-900 dark:text-white">
-                  TK 200
+                  BDT {item.productPrice}
                 </del>
                 <span className="text-[20px] font-bold text-gray-900 dark:text-white">
-                  Tk 160/kg
+                  BDT {item.productSalePrice}/{item.unit}
                 </span>
               </div>
               <Link

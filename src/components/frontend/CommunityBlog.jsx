@@ -1,8 +1,10 @@
 import React from "react";
 import CommunityCarousel from "../frontend/CommunityCarousel";
 import Link from "next/link";
+import getData from "@/lib/getData";
 
-export default function CommunityBlog() {
+export default async function CommunityBlog() {
+  const trainings = await getData("trainings");
   return (
     <div className="mt-[200px]">
       <div className="w-full p-4 flex justify-between items-center h-[50px] border-b rounded shadow-md mb-3">
@@ -15,7 +17,7 @@ export default function CommunityBlog() {
         </Link>
       </div>
       <div className="">
-        <CommunityCarousel />
+        <CommunityCarousel trainings={trainings} />
       </div>
     </div>
   );
