@@ -1,5 +1,4 @@
 import PageHeader from "@/components/backend/PageHeader";
-import TableAction from "@/components/backend/TableAction";
 import DataTable from "../../../../../components/data-table-components/DataTable";
 import getData from "../../../../../lib/getData";
 import React from "react";
@@ -15,7 +14,7 @@ export default async function Category() {
         linkTitle="Add Category"
       />
 
-      <div className="py-8">
+      <div className="py-4">
         <DataTable data={categories} columns={columns} />
       </div>
     </div>
