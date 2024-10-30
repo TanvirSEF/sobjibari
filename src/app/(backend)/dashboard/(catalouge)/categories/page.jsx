@@ -1,8 +1,12 @@
 import PageHeader from "@/components/backend/PageHeader";
 import TableAction from "@/components/backend/TableAction";
+import DataTable from "../../../../../components/data-table-components/DataTable";
+import getData from "../../../../../lib/getData";
 import React from "react";
+import { columns } from "./columns";
 
-const Category = () => {
+export default async function Category() {
+  const categories = await getData("categories");
   return (
     <div className="">
       <PageHeader
@@ -10,12 +14,10 @@ const Category = () => {
         href="/dashboard/categories/new"
         linkTitle="Add Category"
       />
-      <TableAction />
+
       <div className="py-8">
-        <h2>Table</h2>
+        <DataTable data={categories} columns={columns} />
       </div>
     </div>
   );
-};
-
-export default Category;
+}
