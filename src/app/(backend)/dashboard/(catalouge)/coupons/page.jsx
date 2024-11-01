@@ -1,8 +1,11 @@
 import PageHeader from "@/components/backend/PageHeader";
-import TableAction from "@/components/backend/TableAction";
+import DataTable from "../../../../../components/data-table-components/DataTable";
+import getData from "../../../../../lib/getData";
 import React from "react";
+import { columns } from "./columns";
 
-const Coupons = () => {
+export default async function Coupon() {
+  const coupons = await getData("coupons");
   return (
     <div className="">
       <PageHeader
@@ -10,12 +13,10 @@ const Coupons = () => {
         href="/dashboard/coupons/new"
         linkTitle="Add Coupon"
       />
-      <TableAction />
-      <div className="py-8">
-        <h2>Table</h2>
+
+      <div className="py-4">
+        <DataTable data={coupons} columns={columns} />
       </div>
     </div>
   );
-};
-
-export default Coupons;
+}

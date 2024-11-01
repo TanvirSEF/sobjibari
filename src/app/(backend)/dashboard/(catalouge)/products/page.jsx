@@ -1,8 +1,11 @@
 import PageHeader from "@/components/backend/PageHeader";
-import TableAction from "@/components/backend/TableAction";
+import DataTable from "../../../../../components/data-table-components/DataTable";
+import getData from "../../../../../lib/getData";
 import React from "react";
+import { columns } from "./columns";
 
-const Product = () => {
+export default async function Products() {
+  const products = await getData("products");
   return (
     <div className="">
       <PageHeader
@@ -10,12 +13,10 @@ const Product = () => {
         href="/dashboard/products/new"
         linkTitle="Add Products"
       />
-      <TableAction />
-      <div className="py-8">
-        <h2>Table</h2>
+
+      <div className="py-4">
+        <DataTable data={products} columns={columns} filterKeys={["title"]} />
       </div>
     </div>
   );
-};
-
-export default Product;
+}

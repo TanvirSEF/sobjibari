@@ -13,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import ActionColumn from "@/components/dataTableColumns/ActionColumn";
 
 export const columns = [
   {
@@ -91,30 +92,6 @@ export const columns = [
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const isActive = row.isActive;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(isActive)}
-            >
-              Copy the status
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete Category</DropdownMenuItem>
-            <DropdownMenuItem>Edit Category</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
+    cell: ({ row }) => <ActionColumn row={row} title="Banner" />,
   },
 ];

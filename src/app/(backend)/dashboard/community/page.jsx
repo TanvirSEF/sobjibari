@@ -1,21 +1,22 @@
 import PageHeader from "@/components/backend/PageHeader";
-import TableAction from "@/components/backend/TableAction";
+import DataTable from "../../../../components/data-table-components/DataTable";
+import getData from "../../../../lib/getData";
 import React from "react";
+import { columns } from "./columns";
 
-const Category = () => {
+export default async function Products() {
+  const trainings = await getData("trainings");
   return (
     <div className="">
       <PageHeader
-        heading="Sobji Bari Community"
-        href="/dashboard/community/new"
-        linkTitle="Add Training"
+         heading="Sobji Bari Community"
+         href="/dashboard/community/new"
+         linkTitle="Add Training"
       />
-      <TableAction />
-      <div className="py-8">
-        <h2>Table</h2>
+
+      <div className="py-4">
+        <DataTable data={trainings} columns={columns} />
       </div>
     </div>
   );
-};
-
-export default Category;
+}

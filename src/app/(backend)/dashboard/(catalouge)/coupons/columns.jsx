@@ -1,10 +1,7 @@
 "use client";
 import Image from "next/image";
-import { MoreHorizontal } from "lucide-react";
 import { ArrowUpDown } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import DateColumn from "@/components/dataTableColumns/DateColumn";
-import ImageColumn from "@/components/dataTableColumns/ImageColumn";
 import { Button } from "@/components/ui/button";
 import ActionColumn from "@/components/dataTableColumns/ActionColumn";
 
@@ -46,38 +43,46 @@ export const columns = [
     },
   },
   {
-    accessorKey: "imageUrl",
-    header: "Category Image",
-    cell: ({ row }) => <ImageColumn row={row} imageTitle="imageUrl" />,
-  },
-  {
-    accessorKey: "description",
-    header: "Description",
-    cell: ({ row }) => {
-      const description = row.getValue("description");
-      return <div className="line-clamp-1">{description}</div>;
-    },
-  },
-  {
-    accessorKey: "isActive",
-    header: "Active",
+    accessorKey: "couponCode",
+    header: "Coupon Code",
   },
   {
     accessorKey: "createdAt",
     header: "Date Created",
-    cell: ({ row }) => <DateColumn row={row} />,
+    cell: ({ row }) => {
+      const createdAt = row.getValue("createdAt");
+      const originalDate = new Date(createdAt);
+      const day = originalDate.getDate();
+      const month = originalDate.toLocaleDateString("default", {
+        month: "short",
+      });
+      const year = originalDate.getFullYear();
+      const formatted = `${day}th ${month} ${year}`;
+      return <div className="">{formatted}</div>;
+    },
   },
   {
-    id: "actions",
+    accessorKey: "expireDate",
+    header: "Date Expire",
     cell: ({ row }) => {
-      const category = row.original;
-      return (
-        <ActionColumn
-          row={row}
-          title="Category"
-          endpoint={`"categories/${category.id}"`}
-        />
-      );
+      const expireDate = row.getValue("expireDate");
+      const originalDate = new Date(expireDate);
+      const day = originalDate.getDate();
+      const month = originalDate.toLocaleDateString("default", {
+        month: "short",
+      });
+      const year = originalDate.getFullYear();
+      const formatted = `${day}th ${month} ${year}`;
+      return <div className="">{formatted}</div>;
     },
+  },
+  {
+    accessorKey: "isActive",
+    header: "IsActive",
+  },
+ 
+  {
+    id: "actions",
+    cell: ({ row }) => <ActionColumn row={row} title="Coupon" />,
   },
 ];

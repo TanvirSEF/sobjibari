@@ -15,7 +15,7 @@ export default async function Category() {
       />
 
       <div className="py-4">
-        <DataTable data={categories} columns={columns} />
+        <DataTable data={categories} columns={columns} filterKeys={["title"]} />
       </div>
     </div>
   );

@@ -1,10 +1,7 @@
 "use client";
 import Image from "next/image";
-import { MoreHorizontal } from "lucide-react";
 import { ArrowUpDown } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-import DateColumn from "@/components/dataTableColumns/DateColumn";
-import ImageColumn from "@/components/dataTableColumns/ImageColumn";
 import { Button } from "@/components/ui/button";
 import ActionColumn from "@/components/dataTableColumns/ActionColumn";
 
@@ -47,37 +44,40 @@ export const columns = [
   },
   {
     accessorKey: "imageUrl",
-    header: "Category Image",
-    cell: ({ row }) => <ImageColumn row={row} imageTitle="imageUrl" />,
-  },
-  {
-    accessorKey: "description",
-    header: "Description",
+    header: "Blog Image",
     cell: ({ row }) => {
-      const description = row.getValue("description");
-      return <div className="line-clamp-1">{description}</div>;
+      const imageUrl = row.getValue("imageUrl");
+      return (
+        <Image
+          src={imageUrl}
+          height={500}
+          width={500}
+          className="w-24 h-24 rounded-full object-cover"
+        />
+      );
     },
   },
   {
     accessorKey: "isActive",
-    header: "Active",
+    header: "IsActive",
   },
   {
     accessorKey: "createdAt",
     header: "Date Created",
-    cell: ({ row }) => <DateColumn row={row} />,
+    cell: ({ row }) => {
+      const createdAt = row.getValue("createdAt");
+      const originalDate = new Date(createdAt);
+      const day = originalDate.getDate();
+      const month = originalDate.toLocaleDateString("default", {
+        month: "short",
+      });
+      const year = originalDate.getFullYear();
+      const formatted = `${day}th ${month} ${year}`;
+      return <div className="">{formatted}</div>;
+    },
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const category = row.original;
-      return (
-        <ActionColumn
-          row={row}
-          title="Category"
-          endpoint={`"categories/${category.id}"`}
-        />
-      );
-    },
+    cell: ({ row }) => <ActionColumn row={row} title="Blog" />,
   },
 ];
