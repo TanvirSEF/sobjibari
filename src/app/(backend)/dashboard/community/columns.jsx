@@ -78,6 +78,15 @@ export const columns = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <ActionColumn row={row} title="Blog" />,
+    cell: ({ row }) => {
+      const trainings = row.original;
+      return (
+        <ActionColumn
+          row={row}
+          title="Blog"
+          endpoint={`trainings/${trainings.id}`} // Corrected here
+        />
+      );
+    },
   },
 ];

@@ -6,12 +6,12 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 export default function DeleteBtn({ endpoint, title }) {
-  const cleanEndpoint = endpoint.replace(/^"|"$/g, ""); // Remove leading and trailing quotes
+  const cleanEndpoint = endpoint ? endpoint.replace(/^"|"$/g, "") : "";
+  // Remove leading and trailing quotes
 
   const [loading, setLoading] = useState(false);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const router = useRouter();
-  console.log(endpoint);
   // const confirmed = confirm("Are you sure?");
   async function handleDelete() {
     setLoading(true);

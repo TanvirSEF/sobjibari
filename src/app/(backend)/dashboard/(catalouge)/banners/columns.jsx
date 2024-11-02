@@ -1,18 +1,8 @@
 "use client";
 import Image from "next/image";
-import { MoreHorizontal } from "lucide-react";
 import { ArrowUpDown } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
-
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import ActionColumn from "@/components/dataTableColumns/ActionColumn";
 
 export const columns = [
@@ -92,6 +82,15 @@ export const columns = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <ActionColumn row={row} title="Banner" />,
+    cell: ({ row }) => {
+      const banner = row.original;
+      return (
+        <ActionColumn
+          row={row}
+          title="Banner"
+          endpoint={`banners/${banner.id}`} // Corrected here
+        />
+      );
+    },
   },
 ];

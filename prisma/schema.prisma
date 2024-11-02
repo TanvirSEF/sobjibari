@@ -67,7 +67,7 @@ model Product {
   productStock Int
   qty Int
   
-  categories   Category  @relation(fields: [categoryId], references: [id])
+  categories   Category  @relation(fields: [categoryId], references: [id],onDelete: Cascade, onUpdate: Cascade)
   categoryId String @db.ObjectId
 
   createdAt  DateTime  @default(now())
